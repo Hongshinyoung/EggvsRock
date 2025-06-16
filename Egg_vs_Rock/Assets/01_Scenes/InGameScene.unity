@@ -644,11 +644,15 @@ PrefabInstance:
       objectReference: {fileID: 1626474766}
     - target: {fileID: 193407300504327895, guid: d0d578083ecf73c488a0918d61a236a3, type: 3}
       propertyPath: jumpPower
-      value: 2
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 193407300504327895, guid: d0d578083ecf73c488a0918d61a236a3, type: 3}
       propertyPath: moveDuration
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 193407300504327895, guid: d0d578083ecf73c488a0918d61a236a3, type: 3}
+      propertyPath: jumpDistanceThreshold
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2588002456706460050, guid: d0d578083ecf73c488a0918d61a236a3, type: 3}
       propertyPath: m_Name
@@ -746,6 +750,22 @@ PrefabInstance:
     - target: {fileID: 4938785026657907469, guid: ef3f1f597a16e35479d5849444e761f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710790010730988255, guid: ef3f1f597a16e35479d5849444e761f8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710790010730988255, guid: ef3f1f597a16e35479d5849444e761f8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710790010730988255, guid: ef3f1f597a16e35479d5849444e761f8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710790010730988255, guid: ef3f1f597a16e35479d5849444e761f8, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9088701251543741244, guid: ef3f1f597a16e35479d5849444e761f8, type: 3}
       propertyPath: m_Name
