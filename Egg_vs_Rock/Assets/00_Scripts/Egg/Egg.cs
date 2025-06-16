@@ -7,7 +7,7 @@ public class Egg : MonoBehaviour
     [SerializeField] private GameObject target; // Rock
     [SerializeField] private float moveDuration = 5f;
     [SerializeField] private float jumpPower = 0.07f; // 점프 힘
-    [SerializeField] private float jumpDistanceThreshold = 20f; // 점프 시작 거리
+    [SerializeField] private float jumpDistanceThreshold = 25f; // 점프 시작 거리
     private Rigidbody rb; // Rigidbody 참조
 
     private void Awake()
