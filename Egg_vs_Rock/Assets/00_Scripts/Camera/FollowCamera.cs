@@ -7,6 +7,7 @@ public class FollowCamera : MonoBehaviour
     [SerializeField] private float pathDuration = 5f;
     [SerializeField] private float randomRange = 2f;
     private Vector3[] pathPoints;
+    private bool followTarget = false;
 
     private void Awake()
     {
@@ -18,33 +19,48 @@ public class FollowCamera : MonoBehaviour
 
     private void CreateDronePath()
     {
-        // Å¸°Ù ±âÁØÀ¸·Î ÀÌµ¿ °æ·Î ¼³Á¤
+        // íƒ€ê²Ÿ ê¸°ì¤€ìœ¼ë¡œ ì´ë™ ê²½ë¡œ ì„¤ì •
         pathPoints = new Vector3[]
         {
-            target.transform.position + new Vector3(0, 5, -10) + GetRandomOffset(), // µÚÂÊ À§ ½ÃÁ¡
-            target.transform.position + new Vector3(10, 3, 0) + GetRandomOffset(),  // ¿À¸¥ÂÊ ½ÃÁ¡
-            target.transform.position + new Vector3(0, 2, 10) + GetRandomOffset(),  // ¾ÕÂÊ ¾Æ·¡ ½ÃÁ¡
-            target.transform.position + new Vector3(-10, 4, 0) + GetRandomOffset(), // ¿ŞÂÊ ½ÃÁ¡
-            target.transform.position + new Vector3(0, 5, -10) + GetRandomOffset()  // ¿ø·¡ À§Ä¡·Î º¹±Í
+            target.transform.position + new Vector3(0, 5, -10) + GetRandomOffset(), // ë’¤ìª½ ìœ„ ì‹œì 
+            target.transform.position + new Vector3(10, 3, 0) + GetRandomOffset(),  // ì˜¤ë¥¸ìª½ ì‹œì 
+            target.transform.position + new Vector3(0, 2, 10) + GetRandomOffset(),  // ì•ìª½ ì•„ë˜ ì‹œì 
+            target.transform.position + new Vector3(-10, 4, 0) + GetRandomOffset(), // ì™¼ìª½ ì‹œì 
+            target.transform.position + new Vector3(0, 5, -10) + GetRandomOffset()  // ì›ë˜ ìœ„ì¹˜ë¡œ ë³µê·€
         };
 
-        // °æ·Î¸¦ µû¶ó ÀÌµ¿
+        // ê²½ë¡œë¥¼ ë”°ë¼ ì´ë™
         transform.DOPath(pathPoints, pathDuration, PathType.CatmullRom)
             .SetEase(Ease.InOutSine)
             .OnUpdate(() =>
             {
-                // Ä«¸Ş¶ó°¡ Å¸°ÙÀ» Ç×»ó ¹Ù¶óº¸µµ·Ï ¼³Á¤
+                // ì¹´ë©”ë¼ê°€ íƒ€ê²Ÿì„ í•­ìƒ ë°”ë¼ë³´ë„ë¡ ì„¤ì •
                 transform.LookAt(target.transform);
             })
-            .OnComplete(() => Debug.Log("Drone path completed!"));
+            .OnComplete(() =>
+            {
+                followTarget = true; // ë“œë¡  ì—°ì¶œì´ ëë‚œ í›„ íƒ€ê²Ÿì„ ë”°ë¼ê°€ê¸° ì‹œì‘
+                target.GetComponent<Egg>().MoveToRock(); // íƒ€ê²Ÿì´ Rockìœ¼ë¡œ ì´ë™í•˜ë„ë¡ í˜¸ì¶œ
+            });
     }
 
-    // ·£´ı ¿ÀÇÁ¼Â »ı¼º
+    private void LateUpdate()
+    {
+        if (followTarget && target != null)
+        {
+            // ì¹´ë©”ë¼ê°€ íƒ€ê²Ÿì„ ë”°ë¼ê°€ë©° ì¼ì •í•œ ì˜¤í”„ì…‹ ìœ ì§€
+            Vector3 offset = new Vector3(0, 5, -10); // íƒ€ê²Ÿê³¼ì˜ ê±°ë¦¬ ìœ ì§€
+            transform.position = target.transform.position + offset;
+            transform.LookAt(target.transform); // íƒ€ê²Ÿì„ ê³„ì† ë°”ë¼ë´„
+        }
+    }
+
+    // ëœë¤ ì˜¤í”„ì…‹ ìƒì„±
     private Vector3 GetRandomOffset()
     {
         return new Vector3(
-            Random.Range(-randomRange, randomRange), 
-            Random.Range(-randomRange, randomRange), 
+            Random.Range(-randomRange, randomRange),
+            Random.Range(-randomRange, randomRange),
             Random.Range(-randomRange, randomRange)
         );
     }
