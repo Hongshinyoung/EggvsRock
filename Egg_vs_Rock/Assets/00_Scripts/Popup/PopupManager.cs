@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PopupManager : MonoBehaviour
 {
+    private UIPopup _currentPopup;
+    [SerializeField] private Transform popupRoot;
     public static PopupManager Instance { get; private set; }
     private void Awake()
     {
@@ -17,12 +19,15 @@ public class PopupManager : MonoBehaviour
     }
     public void ShowPopup(string popupName)
     {
-        UIPopup popup = Instantiate(Resources.Load<UIPopup>($"Popup/{popupName}"));
-        popup.Show();
+        _currentPopup = Instantiate(Resources.Load<UIPopup>($"Popup/{popupName}"));
+        if(popupRoot != null)
+        {
+            _currentPopup.transform.SetParent(popupRoot, false);
+        }
+        _currentPopup.Show();
     }
     public void HidePopup()
     {
-        // Implement popup hide logic here
-        Debug.Log("Popup hidden");
+        _currentPopup.gameObject.SetActive(false);
     }
 }

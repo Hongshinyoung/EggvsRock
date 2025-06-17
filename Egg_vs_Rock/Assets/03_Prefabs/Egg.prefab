@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 193407300504327895}
   m_Layer: 0
   m_Name: Egg
-  m_TagString: Untagged
+  m_TagString: Egg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4224c6c67ad5f09449e4f128dda4d9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 9088701251543741244, guid: ef3f1f597a16e35479d5849444e761f8, type: 3}
-  moveDuration: 3
-  jumpPower: 1.5
-  jumpCount: 1
+  target: {fileID: 0}
+  moveDuration: 5
+  jumpPower: 0.07
+  jumpDistanceThreshold: 25
 --- !u!1 &3849058830334634650
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 904706035851639405}
   m_Layer: 0
   m_Name: Obj_egg
-  m_TagString: Untagged
+  m_TagString: Egg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,4 +184,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1

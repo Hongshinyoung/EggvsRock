@@ -35,12 +35,14 @@ public class GameManager : MonoBehaviour
 
         // 게임 재시작 인 게임 씬 다시 로드
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        PopupManager.Instance.HidePopup();
     }
 
-    private void GoTOLobby()
+    public void GoTOLobby()
     {
         CurrentState = GameState.Lobby;
         // 로비 씬으로 이동
+        PopupManager.Instance.HidePopup();
         SceneManager.LoadScene("LobbyScene");
     }
 
