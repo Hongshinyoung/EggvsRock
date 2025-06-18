@@ -1,0 +1,16 @@
+{
+  "EggData": [
+    {
+      "Id": "Egg",
+      "Hp": 3,
+      "Damage": 1.5
+    }
+  ],
+  "RockData": [
+    {
+      "Id": "Rock",
+      "Hp": 1000,
+      "Damage": 50
+    }
+  ]
+}
