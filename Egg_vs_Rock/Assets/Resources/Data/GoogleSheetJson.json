@@ -3,7 +3,7 @@
     {
       "Id": "Egg",
       "Hp": 3,
-      "Damage": 1.5
+      "Damage": 1
     }
   ],
   "RockData": [

@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private DataManager dataManager;
+
     private static GameManager _instance;
     public static GameManager Instance
     {

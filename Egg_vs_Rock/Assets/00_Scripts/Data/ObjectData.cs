@@ -13,7 +13,7 @@ public class EggData
 {
     public string Id;
     public int Hp;
-    public float Damage;
+    public int Damage;
 }
 
 [Serializable]
