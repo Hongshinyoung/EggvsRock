@@ -6,7 +6,7 @@ public class Egg : MonoBehaviour
 {
     [SerializeField] private GameObject target; // Rock
     [SerializeField] private float moveDuration = 5f;
-    [SerializeField] private float jumpPower = 3f; // 점프 힘
+    //[SerializeField] private float jumpPower = 3f; // 점프 힘
     [SerializeField] private float jumpDistanceThreshold = 30f; // 점프 시작 거리
 
     [Header("Stats")]
@@ -15,7 +15,8 @@ public class Egg : MonoBehaviour
     [SerializeField] private int damage;
 
     [Header("Effet")]
-    [SerializeField] private ParticleSystem eggEffect; // 이펙트
+    [SerializeField] private ParticleSystem eggRunEffect; // 이펙트
+    [SerializeField] private ParticleSystem eggDestroyEffect; // Egg 파괴 이펙트
 
 
     private Rigidbody rb; // Rigidbody 참조
@@ -23,7 +24,8 @@ public class Egg : MonoBehaviour
     private void Start()
     {
         rb = GetComponentInChildren<Rigidbody>(); // Rigidbody 가져오기
-        eggEffect?.gameObject.SetActive(false); // 이펙트 비활성화
+        eggRunEffect?.gameObject.SetActive(false); // 이펙트 비활성화
+        eggDestroyEffect?.gameObject.SetActive(false); // 파괴 이펙트 비활성화
     }
 
     public void InitStat()
@@ -47,7 +49,7 @@ public class Egg : MonoBehaviour
             StartCoroutine(WaitAndRetryMoveToRock());
             return;
         }
-        eggEffect?.gameObject.SetActive(true); // 이펙트 활성화
+        eggRunEffect?.gameObject.SetActive(true); // 이펙트 활성화
 
         // DOTween을 사용하여 타겟으로 이동
         Tweener moveTween = null;
@@ -88,5 +90,11 @@ public class Egg : MonoBehaviour
     public int GetDamage()
     {
         return damage;
+    }
+
+    public void BreakEgg()
+    {
+        eggDestroyEffect?.gameObject.SetActive(true);
+        Destroy(gameObject, 1);
     }
 }

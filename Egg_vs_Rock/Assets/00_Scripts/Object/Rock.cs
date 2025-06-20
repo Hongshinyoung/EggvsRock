@@ -40,7 +40,7 @@ public class Rock : MonoBehaviour
             }
             else
             {
-                Destroy(collision.gameObject); // Egg 파괴
+                egg.BreakEgg(); // Egg 파괴
             }
 
             //if (damage >= hp)
