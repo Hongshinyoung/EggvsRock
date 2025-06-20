@@ -101,6 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1add1ef95027642a7c5e197ddf1cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: Rock
+  hp: 0
+  damage: 0
 --- !u!65 &7400345111603896570
 BoxCollider:
   m_ObjectHideFlags: 0

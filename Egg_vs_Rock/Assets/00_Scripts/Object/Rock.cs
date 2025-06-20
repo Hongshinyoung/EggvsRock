@@ -8,14 +8,17 @@ public class Rock : MonoBehaviour
     [SerializeField] private int hp;
     [SerializeField] private int damage;
 
-    private void Awake()
+    public void InitStat()
     {
-        InitStat();
-    }
-
-    private void InitStat()
-    {
-
+        if(DataManager.RockStat.TryGetValue(id, out RockStat rockData))
+        {
+            hp = rockData.Hp;
+            damage = rockData.Damage;
+        }
+        else
+        {
+            Debug.LogError($"Rock data with ID {id} not found!");
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -26,25 +29,36 @@ public class Rock : MonoBehaviour
             Debug.Log("Egg가 Rock에 충돌했습니다. 게임 끝. 결과 창을 출력합니다.");
             // 충돌 시 파괴 이펙트 재생
 
-            var egg = collision.gameObject.GetComponent<Egg>();
+            var egg = collision.gameObject.GetComponentInParent<Egg>();
             int damage = egg.GetDamage();
 
-            if (damage >= hp)
+            if (hp <= damage)
             {
                 Destroy(gameObject); // Rock 파괴
                 Debug.Log("Rock 파괴됨");
+                // Rock 파괴 이펙트 재생
             }
             else
             {
-                hp = Mathf.Max(0, hp - damage);
-                if(hp == 0)
-                {
-                    Destroy(collision.gameObject); // Egg 파괴
-                    // Egg 파괴 이펙트 재생
-                }
-
-                Debug.Log($"Rock의 남은 HP: {hp}");
+                Destroy(collision.gameObject); // Egg 파괴
             }
+
+            //if (damage >= hp)
+            //{
+            //    Destroy(gameObject); // Rock 파괴
+            //    Debug.Log("Rock 파괴됨");
+            //}
+            //else
+            //{
+            //    hp = Mathf.Max(0, hp - damage);
+            //    if(hp == 0)
+            //    {
+            //        Destroy(collision.gameObject); // Egg 파괴
+            //        // Egg 파괴 이펙트 재생
+            //    }
+
+            //    Debug.Log($"Rock의 남은 HP: {hp}");
+            //}
         }
     }
 

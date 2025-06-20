@@ -17,20 +17,27 @@ public class Egg : MonoBehaviour
 
     private Rigidbody rb; // Rigidbody 참조
 
-    private void Awake()
+    private void Start()
     {
         rb = GetComponentInChildren<Rigidbody>(); // Rigidbody 가져오기
         if (rb == null)
         {
             Debug.LogError("Rigidbody component is missing!");
         }
-
-        InitStat();
     }
 
-    private void InitStat()
+    public void InitStat()
     {
-        
+        Debug.Log($"Id : {id}");
+        if (DataManager.EggStat.TryGetValue(id, out EggStat eggData))
+        {
+            hp = eggData.Hp;
+            damage = eggData.Damage;
+        }
+        else
+        {
+            Debug.LogError($"Egg data with ID {id} not found!");
+        }
     }
 
     public void MoveToRock()

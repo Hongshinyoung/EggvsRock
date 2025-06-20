@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ObjectData
 {
-    public List<EggData> EggDataList;
-    public List<RockData> RockDataList;
+    public List<EggStat> EggData;
+    public List<RockStat> RockData;
 }
 
 [Serializable]
-public class EggData
+public class EggStat
 {
     public string Id;
     public int Hp;
@@ -17,7 +17,7 @@ public class EggData
 }
 
 [Serializable]
-public class RockData
+public class RockStat
 {
     public string Id;
     public int Hp;
