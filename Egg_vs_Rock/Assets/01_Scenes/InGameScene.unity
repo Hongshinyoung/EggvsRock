@@ -604,6 +604,11 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!198 &493735460 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5966669987842716755, guid: d0d578083ecf73c488a0918d61a236a3, type: 3}
+  m_PrefabInstance: {fileID: 6690175258646266359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &527744514
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,9 +1301,17 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1626474766}
+    - target: {fileID: 193407300504327895, guid: d0d578083ecf73c488a0918d61a236a3, type: 3}
+      propertyPath: eggEffect
+      value: 
+      objectReference: {fileID: 493735460}
     - target: {fileID: 2588002456706460050, guid: d0d578083ecf73c488a0918d61a236a3, type: 3}
       propertyPath: m_Name
       value: Egg
+      objectReference: {fileID: 0}
+    - target: {fileID: 5966669987842716753, guid: d0d578083ecf73c488a0918d61a236a3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6602980763799669503, guid: d0d578083ecf73c488a0918d61a236a3, type: 3}
       propertyPath: m_LocalPosition.x

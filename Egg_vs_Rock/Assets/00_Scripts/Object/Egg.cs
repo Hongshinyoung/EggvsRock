@@ -14,21 +14,20 @@ public class Egg : MonoBehaviour
     [SerializeField] private int hp;
     [SerializeField] private int damage;
 
+    [Header("Effet")]
+    [SerializeField] private ParticleSystem eggEffect; // 이펙트
+
 
     private Rigidbody rb; // Rigidbody 참조
 
     private void Start()
     {
         rb = GetComponentInChildren<Rigidbody>(); // Rigidbody 가져오기
-        if (rb == null)
-        {
-            Debug.LogError("Rigidbody component is missing!");
-        }
+        eggEffect?.gameObject.SetActive(false); // 이펙트 비활성화
     }
 
     public void InitStat()
     {
-        Debug.Log($"Id : {id}");
         if (DataManager.EggStat.TryGetValue(id, out EggStat eggData))
         {
             hp = eggData.Hp;
@@ -48,6 +47,7 @@ public class Egg : MonoBehaviour
             StartCoroutine(WaitAndRetryMoveToRock());
             return;
         }
+        eggEffect?.gameObject.SetActive(true); // 이펙트 활성화
 
         // DOTween을 사용하여 타겟으로 이동
         Tweener moveTween = null;
