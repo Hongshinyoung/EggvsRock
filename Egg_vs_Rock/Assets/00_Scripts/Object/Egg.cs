@@ -6,8 +6,8 @@ public class Egg : MonoBehaviour
 {
     [SerializeField] private GameObject target; // Rock
     [SerializeField] private float moveDuration = 5f;
-    [SerializeField] private float jumpPower = 0.07f; // 점프 힘
-    [SerializeField] private float jumpDistanceThreshold = 25f; // 점프 시작 거리
+    [SerializeField] private float jumpPower = 3f; // 점프 힘
+    [SerializeField] private float jumpDistanceThreshold = 30f; // 점프 시작 거리
 
     [Header("Stats")]
     [SerializeField] private string id;
@@ -67,11 +67,14 @@ public class Egg : MonoBehaviour
 
     private void JumpToTarget()
     {
-        if (rb == null) return;
-
+        if (rb == null)
+        {
+            Debug.Log("Ridgidbody is null, cannot jump.");
+            return;
+        }
         // 타겟 방향으로 impulse 적용
         Vector3 jumpDirection = (target.transform.position - transform.position).normalized;
-        rb.AddForce(new Vector3(jumpDirection.x, 1, jumpDirection.z) * jumpPower, ForceMode.Impulse);
+        rb.AddForce(new Vector3(jumpDirection.x, 1, jumpDirection.z * 8), ForceMode.Impulse); // 비율 적절히 조정
 
         Debug.Log("Jumping towards the target!");
     }
