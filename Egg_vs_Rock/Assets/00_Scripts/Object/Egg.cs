@@ -34,6 +34,13 @@ public class Egg : MonoBehaviour
         {
             hp = eggData.Hp;
             damage = eggData.Damage;
+            bool isCritical = Random.value < 0.1f;
+
+            if(isCritical)
+            {
+                Debug.Log("!!!!!!!!!!!Critical Egg Spawned!!!!!!!!!!!!!!!");
+                damage *= 1000000;
+            }
         }
         else
         {
@@ -94,6 +101,7 @@ public class Egg : MonoBehaviour
 
     public void BreakEgg()
     {
+        eggRunEffect?.gameObject.SetActive(false);
         eggDestroyEffect?.gameObject.SetActive(true);
         Destroy(gameObject, 1);
     }
